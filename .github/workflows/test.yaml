@@ -34,3 +34,4 @@ jobs:
           echo "packageJson=$content" >> $GITHUB_OUTPUT
       - run: |
           echo "${{fromJson(steps.set_var.outputs.packageJson).name}}"
+          echo "my name is reddi"
