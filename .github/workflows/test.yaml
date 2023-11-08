@@ -1,3 +1,4 @@
+name: test github actions
 on:
   workflow_dispatch:
     inputs:
@@ -10,8 +11,8 @@ on:
         - namespace1
         - namespace2
         - namespace3
-#env:
-#  GKE_NAMESPACE:"${{ github.event.inputs.message }}"
+env:
+  GKE_NAMESPACE:${{ github.event.inputs.namespace }}
 
 jobs:
   testJob:
