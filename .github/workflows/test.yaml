@@ -11,7 +11,7 @@ on:
         - namespace2
         - namespace3
 env:
-GKE_NAMESPACE:${{.inputs.namespace}}
+GKE_NAMESPACE:${{ github.event.inputs.message }}
 
 jobs:
   testJob:
