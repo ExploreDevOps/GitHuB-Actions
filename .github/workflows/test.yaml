@@ -20,6 +20,8 @@ jobs:
     name: Test
     runs-on: ubuntu-latest
     steps:
+      - name: checkout code 
+        uses: actions/checkout@v2
       - id: set_var
         run: |
           content=`cat ./UAT/property.json`
