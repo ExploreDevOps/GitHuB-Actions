@@ -15,7 +15,7 @@ jobs:
 
     - name: Extract Age
       run: |
-        if jq -e '.[] | select(.person1)' data.json > /dev/null; then
+        if jq -e '.[] | select(.person3)' data.json > /dev/null; then
           AGE=$(jq '.[] | select(.person1) | .person1.age' data.json)
           NAME=$(jq '.[] | select(.person1) | .person1.name' data.json)
           CITY=$(jq '.[] | select(.person1) | .person1.city' data.json)
