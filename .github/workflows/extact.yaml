@@ -20,9 +20,12 @@ jobs:
         name=$(echo "$person1_details" | jq -r '.person1.name')
         age=$(echo "$person1_details" | jq -r '.person1.age')
         city=$(echo "$person1_details" | jq -r '.person1.city')
-        echo "::set-output name=name::$name"
-        echo "::set-output name=age::$age"
-        echo "::set-output name=city::$city"
+        #echo "::set-output name=name::$name"
+        echo "name=$name" >>GITHUB_OUTPUT
+        #echo "::set-output name=age::$age"
+        echo "age=$age" >>GITHUB_OUTPUT
+        #echo "::set-output name=city::$city"
+        echo "city=$city" >>GITHUB_OUTPUT
 
     - name: Print Person1 Details
       run: |
