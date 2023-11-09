@@ -16,8 +16,14 @@ jobs:
     - name: Extract Age
       run: |
         if jq -e '.[] | select(.person1)' data.json > /dev/null; then
-          age=$(jq '.[] | select(.person1) | .person1.age' data.json)
-          echo "Age of person1 is $age"
+          #age=$(jq '.[] | select(.person1) | .person1.age' data.json)
+          NAME_PERSON=$(echo "$person1_details" | jq -r '.person1.name')
+          AGE_PERSON=$(echo "$person1_details" | jq -r '.person1.age')
+          CITY_PERSON=$(echo "$person1_details" | jq -r '.person1.city')
+
+          echo "Age of person1 is $NAME_PERSON"
+          echo "Age of person1 is $AGE_PERSON"
+          echo "Age of person1 is $CITY_PERSON"
         else
           echo "person1 object not found in the JSON file."
         fi
