@@ -94,6 +94,6 @@ jobs:
 
     - name: Print Person1 Details
       run: |
-        echo "NAME: ${{ steps.extract_details.outputs.name }}"
-        echo "AGE: ${{ steps.extract_details.outputs.age }}"
-        echo "CITY: ${{ steps.extract_details.outputs.city }}"
+        echo "Name: ${{ steps.extract_details.outputs.name }}"
+        echo "Age: ${{ steps.extract_details.outputs.age }}"
+        echo "City: ${{ steps.extract_details.outputs.city }}"
