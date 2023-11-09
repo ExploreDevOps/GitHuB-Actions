@@ -1,4 +1,4 @@
-name: Extract Age
+name: Extract and Print Person1 Details
 
 on:
   push:
@@ -6,23 +6,26 @@ on:
       - main
 
 jobs:
-  extract_age:
+  extract_and_print_person1:
     runs-on: ubuntu-latest
 
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
 
-    - name: Extract Age
+    - name: Extract Person1 Details
+      id: extract_details
       run: |
-        if jq -e '.[] | select(.person3)' data.json > /dev/null; then
-          AGE=$(jq '.[] | select(.person1) | .person1.age' data.json)
-          NAME=$(jq '.[] | select(.person1) | .person1.name' data.json)
-          CITY=$(jq '.[] | select(.person1) | .person1.city' data.json)
-         
-         echo "Age of person1 is $AGE"
-         echo "Name of person1 is $NAME"
-         echo "Age of person1 is $CITY"
-        else
-          echo "person1 object not found in the JSON file."
-        fi
+        person1_details=$(jq '.[] | select(.person1)' data.json)
+        name=$(echo "$person1_details" | jq -r '.person1.name')
+        age=$(echo "$person1_details" | jq -r '.person1.age')
+        city=$(echo "$person1_details" | jq -r '.person1.city')
+        echo "::set-output name=name::$name"
+        echo "::set-output name=age::$age"
+        echo "::set-output name=city::$city"
+
+    - name: Print Person1 Details
+      run: |
+        echo "Name: ${{ steps.extract_details.outputs.name }}"
+        echo "Age: ${{ steps.extract_details.outputs.age }}"
+        echo "City: ${{ steps.extract_details.outputs.city }}"
