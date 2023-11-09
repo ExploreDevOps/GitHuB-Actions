@@ -33,3 +33,9 @@ jobs:
         echo "NAME: ${{ steps.extract_details.outputs.name }}"
         echo "AGE: ${{ steps.extract_details.outputs.age }}"
         echo "CITY: ${{ steps.extract_details.outputs.city }}"
+        
+    - name: test in another step
+      run: |
+        echo "$NAME"
+        echo "$AGE"
+        echo "$CITY"
