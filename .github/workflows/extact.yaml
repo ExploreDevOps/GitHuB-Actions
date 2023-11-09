@@ -1,0 +1,23 @@
+name: Extract Age
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  extract_age:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Extract Age
+      run: |
+        if jq -e '.[] | select(.person1)' data.json > /dev/null; then
+          age=$(jq '.[] | select(.person1) | .person1.age' data.json)
+          echo "Age of person1 is $age"
+        else
+          echo "person1 object not found in the JSON file."
+        fi
