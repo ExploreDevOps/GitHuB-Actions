@@ -1,5 +1,17 @@
 name: build
-on: push
+on:
+  workflow_dispatch:
+    inputs:
+      namespace:
+        description: 'Enter namespace'
+        required: true
+        default: 'namespace1'
+        type: choice
+        options:
+        - 'namespace1'
+        - 'namespace2'
+        - 'namespace3'
+        - None
 jobs:
   job1:
     runs-on: ubuntu-latest
