@@ -1,4 +1,4 @@
-name: Extract and Print Person1 Details
+name: Extract Age
 
 on:
   push:
@@ -6,36 +6,23 @@ on:
       - main
 
 jobs:
-  extract_and_print_person1:
+  extract_age:
     runs-on: ubuntu-latest
 
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
 
-    - name: Extract Person1 Details
-      id: extract_details
+    - name: Extract Age
       run: |
-        person1_details=$(jq '.[] | select(.person1)' data.json)
-        name=$(echo "$person1_details" | jq -r '.person1.name')
-        age=$(echo "$person1_details" | jq -r '.person1.age')
-        city=$(echo "$person1_details" | jq -r '.person1.city')
-        #echo "::set-output name=name::$name"
-        echo "name=$name" >>"$GITHUB_OUTPUT"
-        #echo "::set-output name=age::$age"
-        echo "age=$age" >>"$GITHUB_OUTPUT"
-        #echo "::set-output name=city::$city"
-        echo "city=$city" >>"$GITHUB_OUTPUT"
-    
-
-    - name: Print Person1 Details
-      run: |
-        echo "NAME: ${{ steps.extract_details.outputs.name }}"
-        echo "AGE: ${{ steps.extract_details.outputs.age }}"
-        echo "CITY: ${{ steps.extract_details.outputs.city }}"
-        
-    - name: test in another step
-      run: |
-        echo "$NAME"
-        echo "$AGE"
-        echo "$CITY"
+        if jq -e '.[] | select(.per-son-2)' data.json > /dev/null; then
+          AGE=$(jq '.[] | select(.per-son-2) | .per-son-2.age' data.json)
+          NAME=$(jq '.[] | select(.per-son-2) | .per-son-2.name' data.json)
+          CITY=$(jq '.[] | select(.per-son-2) | .per-son-2.city' data.json)
+         
+         echo "Age of per-son-2 is $AGE"
+         echo "Name of per-son-2 is $NAME"
+         echo "Age of per-son-2 is $CITY"
+        else
+          echo "per-son-2 object not found in the JSON file."
+        fi

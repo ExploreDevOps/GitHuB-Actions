@@ -1,13 +1,13 @@
 [
   {
-    "person1": {
+    "per-son-1": {
       "name": "John Doe",
       "age": 30,
       "city": "New York"
     }
   },
   {
-    "person2": {
+    "per-son-2": {
       "name": "Jane Smith",
       "age": 28,
       "city": "Los Angeles"
