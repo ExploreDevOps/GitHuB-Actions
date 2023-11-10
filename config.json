@@ -1,16 +1,14 @@
-[
-  {
-    "person1": {
-      "name": "John Doe",
-      "age": 30,
-      "city": "New York"
+{
+    "include": [
+    {
+        "name": "Mario"
+    },
+    {
+        "name": "Luigi"
+    }    {
+        "name": "Reddi"
+    }    {
+        "name": "Jithu"
     }
-  },
-  {
-    "person2": {
-      "name": "Jane Smith",
-      "age": 28,
-      "city": "Los Angeles"
-    }
-  }
-]
+    ]
+}
