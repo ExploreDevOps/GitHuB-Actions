@@ -1,9 +1,19 @@
-name: Extract Age
-
+name: Extract age
 on:
-  push:
-    branches:
-      - main
+  workflow_dispatch:
+    inputs:
+      namespace:
+        description: 'Enter namespace'
+        required: true
+        default: 'namespace1'
+        type: choice
+        options:
+        - 'namespace1'
+        - 'namespace2'
+        - 'namespace3'
+        - None
+env:
+  GKE_NAMESPACE: ${{ github.event.inputs.namespace }}        
 
 jobs:
   extract_age:
@@ -15,14 +25,14 @@ jobs:
 
     - name: Extract Age
       run: |
-        if jq -e '.[] | select(.person1)' data.json > /dev/null; then
-          AGE=$(jq '.[] | select(.person1) | .person1.age' data.json)
-          NAME=$(jq '.[] | select(.person1) | .person1.name' data.json)
-          CITY=$(jq '.[] | select(.person1) | .person1.city' data.json)
+        if jq -e '.[] | select(.${GKE_NAMESPACE})' data.json > /dev/null; then
+          AGE=$(jq '.[] | select(.${GKE_NAMESPACE}) | .${GKE_NAMESPACE}.age' data.json)
+          NAME=$(jq '.[] | select(.${GKE_NAMESPACE}) | .${GKE_NAMESPACE}.name' data.json)
+          CITY=$(jq '.[] | select(.${GKE_NAMESPACE}) | .${GKE_NAMESPACE}.city' data.json)
          
          echo "Age of person1 is $AGE"
          echo "Name of person1 is $NAME"
          echo "Age of person1 is $CITY"
         else
-          echo "person1 object not found in the JSON file."
+          echo "$GKE_NAMESPACE object not found in the JSON file."
         fi
