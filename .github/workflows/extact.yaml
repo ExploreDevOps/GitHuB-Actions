@@ -15,14 +15,14 @@ jobs:
 
     - name: Extract Age
       run: |
-        if jq -e '.[] | select(.per-son-2)' data.json > /dev/null; then
-          AGE=$(jq '.[] | select(.per-son-2) | .per-son-2.age' data.json)
-          NAME=$(jq '.[] | select(.per-son-2) | .per-son-2.name' data.json)
-          CITY=$(jq '.[] | select(.per-son-2) | .per-son-2.city' data.json)
+        if jq -e '.[] | select(.person1)' data.json > /dev/null; then
+          AGE=$(jq '.[] | select(.person1) | .person1.age' data.json)
+          NAME=$(jq '.[] | select(.person1) | .person1.name' data.json)
+          CITY=$(jq '.[] | select(.person1) | .person1.city' data.json)
          
-         echo "Age of per-son-2 is $AGE"
-         echo "Name of per-son-2 is $NAME"
-         echo "Age of per-son-2 is $CITY"
+         echo "Age of person1 is $AGE"
+         echo "Name of person1 is $NAME"
+         echo "Age of person1 is $CITY"
         else
-          echo "per-son-2 object not found in the JSON file."
+          echo "person1 object not found in the JSON file."
         fi
