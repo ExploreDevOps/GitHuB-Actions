@@ -1,17 +1,17 @@
 {
     "include": [
     {
-        "name": "Mario"
+        "name": "Mario",
         "age": "30"
     },
     {
-        "name": "Luigi"
+        "name": "Luigi",
 		 "age": "31"
     },    {
-        "name": "Reddi"
+        "name": "Reddi",
 		 "age": "32"
     },   {
-        "name": "Jithu"
+        "name": "Jithu",
 		 "age": "3"
     }
     ]
