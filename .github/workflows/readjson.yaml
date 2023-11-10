@@ -1,4 +1,4 @@
-name: test github actions
+name: test github actions-read json
 on:
   workflow_dispatch:
     inputs:
