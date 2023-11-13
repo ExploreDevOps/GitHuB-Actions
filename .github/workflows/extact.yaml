@@ -52,6 +52,6 @@ jobs:
         #else
         #  echo "person1 object not found in the JSON file."
         #fi
-        name: display in another step
+    - name: display in another step
         run: |
           echo name: {{steps.read-data.ooutput.name}}
