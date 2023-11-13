@@ -1,4 +1,4 @@
-name: Extract age
+name: Extract name Reddisekhar 
 on:
   workflow_dispatch:
     inputs:
