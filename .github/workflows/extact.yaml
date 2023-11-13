@@ -14,7 +14,8 @@ on:
         - 'abc-def-efg-hij'
         - None
 env:
-  GKE_NAMESPACE: ${{ github.event.inputs.namespace }}      
+  PARAMETER_WF: ${{ github.event.inputs.namespace }}      
+  #GKE_NAMESPACE: ${{ github.event.inputs.namespace }}      
   #PARAMETER_WF: ${{ github.event.inputs.namespace }}      
   #PARAMETER_WF="abc-def-efg-hij"  
 
