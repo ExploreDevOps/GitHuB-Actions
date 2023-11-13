@@ -5,7 +5,7 @@ on:
       namespace:
         description: 'Enter namespace'
         required: true
-        default: 'namespace1'
+        default: 'None'
         type: choice
         options:
         - 'abc-def-efg-hij'
