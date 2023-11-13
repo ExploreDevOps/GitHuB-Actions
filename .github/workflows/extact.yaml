@@ -54,4 +54,4 @@ jobs:
         #fi
     - name: display in another step
       run: |
-        echo name: {{steps.read-data.ooutput.name}}
+        echo "name: {{steps.read-data.ooutput.name}}"
