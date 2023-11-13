@@ -11,9 +11,12 @@ on:
         - 'namespace1'
         - 'namespace2'
         - 'namespace3'
+        - 'abc-def-efg-hij'
         - None
 env:
-  GKE_NAMESPACE: ${{ github.event.inputs.namespace }}        
+  GKE_NAMESPACE: ${{ github.event.inputs.namespace }}      
+  #PARAMETER_WF: ${{ github.event.inputs.namespace }}      
+  #PARAMETER_WF="abc-def-efg-hij"  
 
 jobs:
   extract_age:
@@ -25,14 +28,22 @@ jobs:
 
     - name: Extract Age
       run: |
-        if jq -e '.[] | select(.person1)' data.json > /dev/null; then
-          AGE=$(jq '.[] | select(.person1) | .person1.age' data.json)
-          NAME=$(jq '.[] | select(.person1) | .person1.name' data.json)
-          CITY=$(jq '.[] | select(.person1) | .person1.city' data.json)
-         
-         echo "Age of person1 is $AGE"
-         echo "Name of person1 is $NAME"
-         echo "Age of person1 is $CITY"
+        
+        if jq -e ".[] | select(has(\"$PARAMETER_WF\"))" /home/reddigcpdevops2/data-new.json > /dev/null; then
+          name=$(jq ".[] | select(has(\"$PARAMETER_WF\")) | .[\"$PARAMETER_WF\"].name" /home/reddigcpdevops2/data-new.json
+          echo "Name of PARAMETER_WF is $name"
         else
-          echo "person1 object not found in the JSON file."
+          echo "PARAMETER_WF object not found in the JSON file."
         fi
+
+        #if '.[] | select(has("abc-def-ghi")) | .["abc-def-ghi"].age' data-new.json > /dev/null; then
+        #  AGE=$(jq '.[] | select(.person1) | .person1.age' data.json)
+        #  NAME=$(jq '.[] | select(.person1) | .person1.name' data.json)
+        #  CITY=$(jq '.[] | select(.person1) | .person1.city' data.json)
+        # 
+        # echo "Age of person1 is $AGE"
+        # echo "Name of person1 is $NAME"
+        # echo "Age of person1 is $CITY"
+        #else
+        #  echo "person1 object not found in the JSON file."
+        #fi
