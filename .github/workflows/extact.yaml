@@ -8,19 +8,22 @@ on:
         default: 'namespace1'
         type: choice
         options:
-        - 'namespace1'
-        - 'namespace2'
-        - 'namespace3'
         - 'abc-def-efg-hij'
         - 'jkl-mno-pqr'
         - 'jkl-mno-pqr-test'
         - None
+      environment:
+        description: 'Enter environment'
+        required: true
+        default: 'None'
+        type: choice
+        options:
+        - 'UAT1'
+        - 'UAT2'
+        - None
 env:
   PARAMETER_WF: ${{ github.event.inputs.namespace }}      
-  #GKE_NAMESPACE: ${{ github.event.inputs.namespace }}      
-  #PARAMETER_WF: ${{ github.event.inputs.namespace }}      
-  #PARAMETER_WF="abc-def-efg-hij"  
-
+  TARGER_ENV: ${{ github.event.inputs.environment }}      
 jobs:
   extract_age:
     runs-on: ubuntu-latest
@@ -32,11 +35,10 @@ jobs:
     - name: Extract Age
       id: read-data
       run: |
-        
-        if jq -e ".[] | select(has(\"$PARAMETER_WF\"))" ./UAT/property.json > /dev/null; then
-          name=$(jq ".[] | select(has(\"$PARAMETER_WF\")) | .[\"$PARAMETER_WF\"].name" ./UAT/property.json)
-          age=$(jq ".[] | select(has(\"$PARAMETER_WF\")) | .[\"$PARAMETER_WF\"].age" ./UAT/property.json)
-          city=$(jq ".[] | select(has(\"$PARAMETER_WF\")) | .[\"$PARAMETER_WF\"].city" ./UAT/property.json)
+        if jq -e ".[] | select(has(\"$PARAMETER_WF\"))" ./${TARGER_ENV}/property.json > /dev/null; then
+          name=$(jq ".[] | select(has(\"$PARAMETER_WF\")) | .[\"$PARAMETER_WF\"].name" ./${TARGER_ENV}/property.json)
+          age=$(jq ".[] | select(has(\"$PARAMETER_WF\")) | .[\"$PARAMETER_WF\"].age" ./${TARGER_ENV}/property.json)
+          city=$(jq ".[] | select(has(\"$PARAMETER_WF\")) | .[\"$PARAMETER_WF\"].city" ./${TARGER_ENV}/property.json)
           echo "name=$name" >>"$GITHUB_OUTPUT"
           echo "age=$age" >>"$GITHUB_OUTPUT"
           echo "city=$city" >>"$GITHUB_OUTPUT"
