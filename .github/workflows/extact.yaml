@@ -12,6 +12,7 @@ on:
         - 'namespace2'
         - 'namespace3'
         - 'abc-def-efg-hij'
+        - 'jkl-mno-pqr'
         - None
 env:
   PARAMETER_WF: ${{ github.event.inputs.namespace }}      
