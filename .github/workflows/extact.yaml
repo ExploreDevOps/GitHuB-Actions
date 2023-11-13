@@ -35,23 +35,19 @@ jobs:
         
         if jq -e ".[] | select(has(\"$PARAMETER_WF\"))" ./UAT/property.json > /dev/null; then
           name=$(jq ".[] | select(has(\"$PARAMETER_WF\")) | .[\"$PARAMETER_WF\"].name" ./UAT/property.json)
+          age=$(jq ".[] | select(has(\"$PARAMETER_WF\")) | .[\"$PARAMETER_WF\"].age" ./UAT/property.json)
+          city=$(jq ".[] | select(has(\"$PARAMETER_WF\")) | .[\"$PARAMETER_WF\"].city" ./UAT/property.json)
           echo "name=$name" >>"$GITHUB_OUTPUT"
+          echo "age=$age" >>"$GITHUB_OUTPUT"
+          echo "city=$city" >>"$GITHUB_OUTPUT"
           echo "Name of $PARAMETER_WF is $name"
+          echo "age of $PARAMETER_WF is $age"
+          echo "city of $PARAMETER_WF is $city"
         else
           echo "$PARAMETER_WF object not found in the JSON file."
         fi
-
-        #if '.[] | select(has("abc-def-ghi")) | .["abc-def-ghi"].age' data-new.json > /dev/null; then
-        #  AGE=$(jq '.[] | select(.person1) | .person1.age' data.json)
-        #  NAME=$(jq '.[] | select(.person1) | .person1.name' data.json)
-        #  CITY=$(jq '.[] | select(.person1) | .person1.city' data.json)
-        # 
-        # echo "Age of person1 is $AGE"
-        # echo "Name of person1 is $NAME"
-        # echo "Age of person1 is $CITY"
-        #else
-        #  echo "person1 object not found in the JSON file."
-        #fi
     - name: display in another step
       run: |
         echo "name: ${{ steps.read-data.outputs.name}}"
+        echo "age: ${{ steps.read-data.outputs.age}}"
+        echo "city: ${{ steps.read-data.outputs.city}}"
