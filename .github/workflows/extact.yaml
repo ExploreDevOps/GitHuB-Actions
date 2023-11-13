@@ -23,7 +23,7 @@ on:
         - None
 env:
   PARAMETER_WF: ${{ github.event.inputs.namespace }}      
-  TARGER_ENV: ${{ github.event.inputs.environment }}      
+  TARGET_ENV: ${{ github.event.inputs.environment }}      
 jobs:
   extract_age:
     runs-on: ubuntu-latest
@@ -35,10 +35,10 @@ jobs:
     - name: Extract Age
       id: read-data
       run: |
-        if jq -e ".[] | select(has(\"$PARAMETER_WF\"))" ./${TARGER_ENV}/property.json > /dev/null; then
-          name=$(jq ".[] | select(has(\"$PARAMETER_WF\")) | .[\"$PARAMETER_WF\"].name" ./${TARGER_ENV}/property.json)
-          age=$(jq ".[] | select(has(\"$PARAMETER_WF\")) | .[\"$PARAMETER_WF\"].age" ./${TARGER_ENV}/property.json)
-          city=$(jq ".[] | select(has(\"$PARAMETER_WF\")) | .[\"$PARAMETER_WF\"].city" ./${TARGER_ENV}/property.json)
+        if jq -e ".[] | select(has(\"$PARAMETER_WF\"))" ./${TARGET_ENV}/property.json > /dev/null; then
+          name=$(jq ".[] | select(has(\"$PARAMETER_WF\")) | .[\"$PARAMETER_WF\"].name" ./${TARGET_ENV}/property.json)
+          age=$(jq ".[] | select(has(\"$PARAMETER_WF\")) | .[\"$PARAMETER_WF\"].age" ./${TARGET_ENV}/property.json)
+          city=$(jq ".[] | select(has(\"$PARAMETER_WF\")) | .[\"$PARAMETER_WF\"].city" ./${TARGET_ENV}/property.json)
           echo "name=$name" >>"$GITHUB_OUTPUT"
           echo "age=$age" >>"$GITHUB_OUTPUT"
           echo "city=$city" >>"$GITHUB_OUTPUT"
