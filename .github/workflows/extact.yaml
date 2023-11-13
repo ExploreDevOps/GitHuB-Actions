@@ -32,8 +32,8 @@ jobs:
     - name: Extract Age
       run: |
         
-        if jq -e ".[] | select(has(\"$PARAMETER_WF\"))" data-new.json > /dev/null; then
-          name=$(jq ".[] | select(has(\"$PARAMETER_WF\")) | .[\"$PARAMETER_WF\"].name" data-new.json)
+        if jq -e ".[] | select(has(\"$PARAMETER_WF\"))" /UAT/property.json > /dev/null; then
+          name=$(jq ".[] | select(has(\"$PARAMETER_WF\")) | .[\"$PARAMETER_WF\"].name" /UAT/property.json)
           echo "Name of $PARAMETER_WF is $name"
         else
           echo "$PARAMETER_WF object not found in the JSON file."

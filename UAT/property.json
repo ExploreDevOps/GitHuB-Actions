@@ -1,1 +1,16 @@
-"namespace1":{"name":"John", "age":30, "city":"New York"}
+[
+  {
+    "abc-def-efg-hij": {
+      "name": "Reddisekhar Pamula",
+      "age": 30,
+      "city": "New York"
+    }
+  },
+  {
+    "jkl-mno-pqr": {
+      "name": "Reddijithisha Pamula",
+      "age": 3,
+      "city": "Los Angeles"
+    }
+  }
+]
