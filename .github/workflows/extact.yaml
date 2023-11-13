@@ -30,10 +30,11 @@ jobs:
       uses: actions/checkout@v2
 
     - name: Extract Age
+      id: read-data
       run: |
         
         if jq -e ".[] | select(has(\"$PARAMETER_WF\"))" ./UAT/property.json > /dev/null; then
-          name=$(jq ".[] | select(has(\"$PARAMETER_WF\")) | .[\"$PARAMETER_WF\"].name" ./UAT/property.json)
+          name=$(jq ".[] | select(has(\"$PARAMETER_WF\")) | .[\"$PARAMETER_WF\"].name" ./UAT/property.json) >>>$"GITHUB_OUTPUT"
           echo "Name of $PARAMETER_WF is $name"
         else
           echo "$PARAMETER_WF object not found in the JSON file."
@@ -50,3 +51,6 @@ jobs:
         #else
         #  echo "person1 object not found in the JSON file."
         #fi
+        name: display in another step
+        run: |
+          echo name: {{steps.read-data.ooutput.name}}
