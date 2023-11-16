@@ -26,5 +26,5 @@ jobs:
         env:
           SELECTED_COLOR1: ${{ steps.color-selector.outputs.SELECTED_COLOR }}
         run: 
-          echo "The selected color is sekhar-$SELECTED_COLOR1"
+          echo "The selected color is sekhar-$SELECTED_COLOR1-Jithu"
           
