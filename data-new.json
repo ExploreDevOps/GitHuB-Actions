@@ -2,7 +2,7 @@
   {
     "abc-def-efg-hij": {
       "name": "Reddisekhar Pamula",
-      "age": 30,
+      "age": "30",
       "city": "New York"
     }
   },
