@@ -37,13 +37,13 @@ jobs:
       run: |
         if jq -e ".[] | select(has(\"$PARAMETER_WF\"))" ./${TARGET_ENV}/property.json > /dev/null; then
           name=$(jq ".[] | select(has(\"$PARAMETER_WF\")) | .[\"$PARAMETER_WF\"].name" ./${TARGET_ENV}/property.json)
-          version-number=$(jq ".[] | select(has(\"$PARAMETER_WF\")) | .[\"$PARAMETER_WF\"].version-number" ./${TARGET_ENV}/property.json)
+          version=$(jq ".[] | select(has(\"$PARAMETER_WF\")) | .[\"$PARAMETER_WF\"].version" ./${TARGET_ENV}/property.json)
           city=$(jq ".[] | select(has(\"$PARAMETER_WF\")) | .[\"$PARAMETER_WF\"].city" ./${TARGET_ENV}/property.json)
           echo "name=$name" >>"$GITHUB_OUTPUT"
-          echo "version-number=$version-number" >>"$GITHUB_OUTPUT"
+          echo "version=$version" >>"$GITHUB_OUTPUT"
           echo "city=$city" >>"$GITHUB_OUTPUT"
           echo "Name of $PARAMETER_WF is $name"
-          echo "version-number of $PARAMETER_WF is $version-number"
+          echo "version of $PARAMETER_WF is $version"
           echo "city of $PARAMETER_WF is $city"
         else
           echo "$PARAMETER_WF object not found in the JSON file."
@@ -51,5 +51,5 @@ jobs:
     - name: display in another step
       run: |
         echo "name: ${{ steps.read-data.outputs.name}}"
-        echo "version-number: ${{ steps.read-data.outputs.version-number}}"
+        echo "version: ${{ steps.read-data.outputs.version}}"
         echo "city: ${{ steps.read-data.outputs.city}}"

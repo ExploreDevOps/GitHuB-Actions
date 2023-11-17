@@ -2,14 +2,14 @@
   {
     "abc-def-efg-hij": {
       "name": "John Doe",
-      "version-number": "0.0.20",
+      "version": "0.0.20",
       "city": "New York"
     }
   },
   {
     "jkl-mno-pqr": {
       "name": "Jane Smith",
-      "version-number": "1.2.3",
+      "version": "1.2.3",
       "city": "Los Angeles"
     }
   }
