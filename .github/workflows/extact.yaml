@@ -37,7 +37,7 @@ jobs:
       run: |
         if jq -e ".[] | select(has(\"$PARAMETER_WF\"))" ./${TARGET_ENV}/property.json > /dev/null; then
           name=$(jq ".[] | select(has(\"$PARAMETER_WF\")) | .[\"$PARAMETER_WF\"].name" ./${TARGET_ENV}/property.json)
-          version=$(jq ".[] | select(has(\"$PARAMETER_WF\")) | .[\"$PARAMETER_WF\"].version" ./${TARGET_ENV}/property.json)
+          version=$(jq ".[] | select(has(\"$PARAMETER_WF\")) | .[\"$PARAMETER_WF\"].version | tonumber" ./${TARGET_ENV}/property.json)
           city=$(jq ".[] | select(has(\"$PARAMETER_WF\")) | .[\"$PARAMETER_WF\"].city" ./${TARGET_ENV}/property.json)
           echo "name=$name" >>"$GITHUB_OUTPUT"
           echo "version=$version" >>"$GITHUB_OUTPUT"
