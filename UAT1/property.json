@@ -2,7 +2,7 @@
   {
     "abc-def-efg-hij": {
       "name": "John Doe",
-      "version": 0.0.20,
+      "version": "0.0.20",
       "city": "New York"
     }
   },
